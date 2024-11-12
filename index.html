@@ -48,7 +48,6 @@
             resize: none;
             overflow-y: hidden;
             border: 2px solid var(--black);
-            box-shadow: 1.4px 1.4px 1.4px #818181;
             line-height: 1.6;
             --line-height-px: calc(1.6 * clamp(1.5rem, 2vw, 2rem));
 
@@ -70,11 +69,24 @@
             background-repeat: repeat-y;
             font-family: "Delius", cursive;
         }
+
+        #element {
+            display: none;
+            font-family: "Delius", cursive;
+            font-size: 1em;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+            user-select: none;
+            opacity: 0.5;
+        }
     </style>
 
 <body>
 
     <textarea id="areaTesto" spellcheck="false"></textarea>
+    <span id="element">._.</span>
 
     <script>
 
@@ -93,6 +105,22 @@
             });
         });
 
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num === 2) return true;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+
+        if (isPrime(dayOfMonth)) {
+            const element = document.getElementById('element');
+            element.style.display = 'block';
+        }
 
     </script>
 
